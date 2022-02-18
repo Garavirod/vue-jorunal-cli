@@ -8,7 +8,7 @@
 <script>
 export default {
   methods:{
-     goToDayBook(){
+     goToDayBook: function (){
       this.$router.push({name:'daybook'});
     }
   }
