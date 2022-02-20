@@ -1,3 +1,4 @@
+
 $theme-colors: (
   "primary":    #2c3c50,
   "secondary":  #1d6042,
@@ -9,5 +10,9 @@ $theme-colors: (
   "dark":       #343a40
 );
 
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
 
-@import 'node_modules/bootstrap/scss/bootstrap.scss'
+
+.pointer{
+  cursor: pointer;
+}
