@@ -26,9 +26,11 @@ export default {
 
 <style lang="scss" scoped>
     .entry-list-container{
-
+        border-right: 1px solid #2c2c2c;
+        height: calc(100vh - 56px);
     }
     .entry-scrollarea{
-        
+        height: calc( 100vh - 120px);
+        overflow: scroll;
     }
 </style>
