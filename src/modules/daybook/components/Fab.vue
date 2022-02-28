@@ -1,10 +1,16 @@
 <template>
-  <button class="btn btn-primary"> <b>New</b> </button>
+  <button class="btn btn-primary"> <b>{{ wordButton }}</b> </button>
 </template>
 
 <script>
 export default {
-    name:'Fab'
+    name:'Fab',
+    props:{
+        wordButton:{
+            type: String,
+            default: "New"
+        }
+    }
 }
 </script>
 
