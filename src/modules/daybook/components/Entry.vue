@@ -8,7 +8,7 @@
             <span class="mx-1 fs-5">Julio</span>
             <span class="mx-2 fw-light">2021, Jueves</span>
             <div class="entry-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eos itaque ex sequi ratione, dolor rem alias. Voluptatum quod est voluptatem amet recusandae obcaecati, a neque dolor ipsa beatae? Odio?
+                {{ shortText }}
             </div>
         </div>
     </div>
@@ -16,7 +16,22 @@
 
 <script>
 export default {
-    name:'Entry'
+    name:'Entry',
+    props:{
+        entry:{
+            type:Object,
+            required:true, 
+        }
+    },
+    computed:{
+        shortText: function() {
+            return ( 
+                this.entry.text.length > 130 ? 
+                this.entry.text.substring(0,130) + '...' :
+                this.entry.text
+            )
+        }
+    }
 }
 </script>
 
