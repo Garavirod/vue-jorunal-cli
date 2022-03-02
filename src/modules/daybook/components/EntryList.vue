@@ -4,20 +4,19 @@
             <input type="text"
             class="form-control"
             placeholder="Shearch entries"
+            v-model="term"
             >
         </div>
 
         <div class="entry-scrollarea">
-            <Entry v-for="item in [1,2,3,4,5,6,7,9,10,11,12,12,12,1,2,12,12,12,12]" :key="item"/>
-                
-            
+            <Entry v-for="item in getEntriesByTerm" :key="item"/>                            
         </div>
     </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from 'vue'
-
+import { mapGetters } from 'vuex'
 export default {
     name:'EntryList',
     components:{
@@ -26,9 +25,18 @@ export default {
     },
     data() {
         return {
-            
+            term:'',
         }
     },
+
+    computed:{
+        /* VUEX */
+        ...mapGetters('journal',['getEntryByTerm']),
+        /*  Component */
+        getEntriesByTerm:function(){
+            return this.getEntryByTerm(this.term);
+        }
+    }
 }
 </script>
 
