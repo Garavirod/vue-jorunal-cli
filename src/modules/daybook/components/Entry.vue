@@ -4,9 +4,9 @@
         class="entry-container pointer p-2 pointer mb-3">
         <!-- title -->
         <div class="entry-title d-flex">
-            <span class="fw-bold fs-5 text-success"> {{day}} </span>
-            <span class="mx-1 fs-5"> {{ month }} </span>
-            <span class="mx-2 fw-light"> {{ yearDay }} </span>
+            <span class="fw-bold fs-5 text-success"> {{dateFormatEntry.day}} </span>
+            <span class="mx-1 fs-5"> {{ dateFormatEntry.month }} </span>
+            <span class="mx-2 fw-light"> {{ dateFormatEntry.yearDay }} </span>
             <div class="entry-description">
                 {{ shortText }}
             </div>
@@ -15,9 +15,7 @@
 </template>
 
 <script>
-
-const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-const days   = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
+import getDayMonthYear from '../helper/getDayMonthYear';
 
 export default {
     name:'Entry',
@@ -35,18 +33,9 @@ export default {
                 this.entry.text
             )
         },
-        day(){
-            const date = new Date( this.entry.date );
-            return date.getDate();
+        dateFormatEntry(){
+            return getDayMonthYear( this.entry.date );
         },
-        month(){
-            const date = new Date( this.entry.date );
-            return months[ date.getMonth() ];
-        },
-        yearDay(){
-            const date = new Date( this.entry.date );
-            return date.getFullYear() + ' ' + days[ date.getDay() ];
-        }
          
     }
 }

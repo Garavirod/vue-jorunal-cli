@@ -17,7 +17,7 @@
     </div>
     <hr>
     <div class="d-flex flex-column px-3 h-75">
-        <textarea placeholder="What happend today?"></textarea>
+        <textarea v-model="entry.text" placeholder="What happend today?"></textarea>
     </div>
     <Fab :wordButton="'Save'" />
     <img 
@@ -37,6 +37,11 @@ export default {
             required: true,
         }
     },
+    data(){
+        return {
+            entry: null
+        }
+    },
     computed:{
         ...mapGetters('journal',['getEntryById'])
     },
@@ -45,7 +50,8 @@ export default {
     },
     methods:{
         loadEntry(){
-            console.log(this.getEntryById(this.id));
+            this.entry = this.getEntryById(this.id);
+            if( !this.entry ) this.$router.push({ name: 'no-entry' })
         }
     },
     created(){
