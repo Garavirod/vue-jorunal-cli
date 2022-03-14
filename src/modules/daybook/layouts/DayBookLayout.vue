@@ -1,6 +1,14 @@
 <template>
     <Navbar/>    
-    <div class="d-flex">
+
+    <!-- Loading data progress -->
+    <div v-if="isLoading" class="row justify-content-md-center">
+        <div class="col alert-info text-center mt-5 p-5">
+            Wait please...            
+        </div>
+    </div>
+    <!-- Data already loaded -->
+    <div v-else class="d-flex">
         <div class="col-4">
             <entry-list/>
         </div>
@@ -13,7 +21,7 @@
 
 <script>
 import { defineAsyncComponent } from '@vue/runtime-core'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
     components:{
         Navbar: defineAsyncComponent( () => import('../components/Navbar.vue')),
@@ -21,6 +29,9 @@ export default {
     },
     methods:{
         ...mapActions('journal',['loadEntries'])
+    },
+    computed:{
+        ...mapState('journal',['isLoading']),
     },
     created(){
         this.loadEntries();
