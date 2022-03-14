@@ -32,7 +32,7 @@
 
 <script>
 import { defineAsyncComponent } from '@vue/runtime-core'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
     props:{
         id: {
@@ -52,12 +52,16 @@ export default {
         Fab: defineAsyncComponent(()=> import('../components/Fab.vue'))
     },
     methods:{
+        /* VUEX */
+        ...mapActions('journal',['updateEntry']),
+
+        /* LOCAL */
         loadEntry(){
             this.entry = this.getEntryById(this.id);
             if( !this.entry ) this.$router.push({ name: 'no-entry' })
         },
-        async saveEntry(){
-            console.log('Saving entry...');
+        async saveEntry(){            
+            this.updateEntry(this.entry)
         }
     },
     created(){
