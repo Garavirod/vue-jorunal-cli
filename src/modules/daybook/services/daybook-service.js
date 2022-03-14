@@ -11,8 +11,9 @@ class DayBookService extends Service{
         return journalApi.get('/entries.json');
     }
 
-    updateEntryText( updatedEntry ){
-        return journalApi.put('/entries.josn',updatedEntry);
+    updateEntryText( id,updatedEntry ){
+    
+        return journalApi.put(`/entries/${id}.json`,updatedEntry);
     }
 }
 

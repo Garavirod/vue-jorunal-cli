@@ -14,9 +14,9 @@ export const loadEntries = async ( {commit} ) => {
 }
 
 export const updateEntry = async ({commit}, entry) => {
-    const dataUpdated = { 'text':entry.text, 'date':entry.date }
-    const { data } = await daybookService.updateEntryText(dataUpdated);
-    commit('updateEntry',data)
+    const dataUpdated = { 'text':entry.text, 'date':entry.date, 'picture':entry.picture }
+    await daybookService.updateEntryText(entry.id,dataUpdated);
+    commit('updateEntry',{...entry})
 }
 
 export const createEntry = async ( /* {commit}  */) => {
