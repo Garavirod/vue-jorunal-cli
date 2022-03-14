@@ -21,7 +21,7 @@
         <div class="d-flex flex-column px-3 h-75">
             <textarea v-model="entry.text" placeholder="What happend today?"></textarea>
         </div>
-        <Fab :wordButton="'Save'" />
+        <Fab @on:click="saveEntry" :wordButton="'Save'" />
         <img 
             src="https://picsum.photos/200/300" 
             alt="entry-picture"
@@ -55,6 +55,9 @@ export default {
         loadEntry(){
             this.entry = this.getEntryById(this.id);
             if( !this.entry ) this.$router.push({ name: 'no-entry' })
+        },
+        async saveEntry(){
+            console.log('Saving entry...');
         }
     },
     created(){

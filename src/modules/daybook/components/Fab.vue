@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-primary"> <b>{{ wordButton }}</b> </button>
+  <button @click="$emit('on:click')" class="btn btn-primary"> <b>{{ wordButton }}</b> </button>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
             type: String,
             default: "New"
         }
-    }
+    },
 }
 </script>
 
