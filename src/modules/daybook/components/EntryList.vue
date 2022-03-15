@@ -8,6 +8,10 @@
             >
         </div>
 
+        <div class="mt-2 flex-column d-flex">
+            <button @click="$router.push({name:'entry', params:{ id:'new'}})" class="btn btn-primary mx-3">New entry</button>
+        </div>
+
         <div class="entry-scrollarea">
             <Entry 
                 v-for="entry in getEntriesByTerm" 

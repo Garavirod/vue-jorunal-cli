@@ -57,11 +57,29 @@ export default {
 
         /* LOCAL */
         loadEntry(){
-            this.entry = this.getEntryById(this.id);
-            if( !this.entry ) this.$router.push({ name: 'no-entry' })
+            let entry;
+            if( this.id === 'new' ){
+
+                entry = {
+                    text:'Write your stor here...',
+                    date: new Date().getTime(),
+                }
+
+            }else{
+
+                entry = this.getEntryById(this.id);
+                if( !this.entry ) this.$router.push({ name: 'no-entry' })
+            }
+
+            this.entry = entry
+
         },
-        async saveEntry(){            
-            this.updateEntry(this.entry)
+        async saveEntry(){    
+            if( this.entry.id ){
+                this.updateEntry(this.entry)
+            }else{
+                // Create new entry
+            }                    
         }
     },
     created(){
