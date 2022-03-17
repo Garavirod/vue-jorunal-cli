@@ -19,6 +19,10 @@ export const updateEntry = async ({commit}, entry) => {
     commit('updateEntry',{...entry})
 }
 
-export const createEntry = async ( /* {commit}  */) => {
-
+export const createEntry = async ( {commit}, entry ) => {
+    const dataEntry = { 'text':entry.text, 'date':entry.date, 'picture':entry.picture }
+    const idSaved = await daybookService.createEntryText( dataEntry )    
+    dataEntry.id = idSaved.data.name
+    commit('addEntry',dataEntry)
+    return dataEntry.id
 }

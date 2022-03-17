@@ -53,7 +53,7 @@ export default {
     },
     methods:{
         /* VUEX */
-        ...mapActions('journal',['updateEntry']),
+        ...mapActions('journal',['updateEntry','createEntry']),
 
         /* LOCAL */
         loadEntry(){
@@ -76,9 +76,12 @@ export default {
         },
         async saveEntry(){    
             if( this.entry.id ){
-                this.updateEntry(this.entry)
+                await this.updateEntry( this.entry )
             }else{
                 // Create new entry
+                const id = await this.createEntry( this.entry )
+                console.log(id);
+                this.$router.push({name:'entry',params:{id}})
             }                    
         }
     },
