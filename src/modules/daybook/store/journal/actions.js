@@ -26,3 +26,8 @@ export const createEntry = async ( {commit}, entry ) => {
     commit('addEntry',dataEntry)
     return dataEntry.id
 }
+
+
+export const deleteEntry = async ( /* {commit}, */ entry ) => {
+    console.log(entry);
+}
