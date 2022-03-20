@@ -1,6 +1,6 @@
 <template>
     <div
-        @click="$router.push({name:'entry', params:{id:entry.id}})" 
+        @click="goTo()" 
         class="entry-container pointer p-2 pointer mb-3">
         <!-- title -->
         <div class="entry-title d-flex">
@@ -8,7 +8,7 @@
             <span class="mx-1 fs-5"> {{ dateFormatEntry.month }} </span>
             <span class="mx-2 fw-light"> {{ dateFormatEntry.yearDay }} </span>
             <div class="entry-description">
-                {{ shortText }}
+                {{ shortText }} 
             </div>
         </div>
     </div>
@@ -37,6 +37,11 @@ export default {
             return getDayMonthYear( this.entry.date );
         },
          
+    },
+    methods:{
+        goTo: function (){
+            this.$router.push({name:'entry', params:{id:this.entry.id}})
+        }
     }
 }
 </script>

@@ -9,7 +9,7 @@
             </div>
 
             <div>
-                <button @click="deleteEntry(entry)" v-if="entry.id" class="btn btn-danger mx-2">
+                <button @click="deleteEntryBook(entry)" v-if="entry.id" class="btn btn-danger mx-2">
                     Delete
                 </button>
                 <button class="btn btn-primary mx-2">
@@ -53,7 +53,7 @@ export default {
     },
     methods:{
         /* VUEX */
-        ...mapActions('journal',['updateEntry','createEntry']),
+        ...mapActions('journal',['updateEntry','createEntry','deleteEntry']),
 
         /* LOCAL */
         loadEntry(){
@@ -66,9 +66,8 @@ export default {
                 }
 
             }else{
-
                 entry = this.getEntryById(this.id);
-                if( !this.entry ) this.$router.push({ name: 'no-entry' })
+                if( !entry ) this.$router.push({ name: 'no-entry' })
             }
 
             this.entry = entry
@@ -85,8 +84,9 @@ export default {
             }                    
         },
 
-        deleteEntry: async function ( entry ){
-            console.log(entry);
+        deleteEntryBook: async function ( entry ){
+            this.deleteEntry(entry)
+            this.$router.push({name:'no-entry'})
         }
     },
     created(){

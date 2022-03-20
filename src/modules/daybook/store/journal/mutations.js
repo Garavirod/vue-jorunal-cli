@@ -12,3 +12,11 @@ export const updateEntry =  ( state, entry ) => {
 export const addEntry =  ( state, entry) => {
     state.entries = [ entry, ...state.entries ];
 }
+
+
+export const removeEntry = ( state, id) => {
+    /* const idx = state.entries.findIndex( (e) => e.id === id )
+    state.entries.splice(idx, 1) */
+
+    state.entries = state.entries.filter( e => e.id !== id )
+}

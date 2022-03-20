@@ -4,12 +4,14 @@ import daybookService from "../../services/daybook-service"
 export const loadEntries = async ( {commit} ) => {
     const { data } = await daybookService.getEntries()
     let entries = []
-    for(const id of Object.keys(data)){
-        entries.push({
-            id,
-            ...data[id]
-        })
-    }
+    if( data ){
+        for(const id of Object.keys(data)){
+            entries.push({
+                id,
+                ...data[id]
+            })
+        }
+    }    
     commit('setEntries', entries)    
 }
 
@@ -28,6 +30,8 @@ export const createEntry = async ( {commit}, entry ) => {
 }
 
 
-export const deleteEntry = async ( /* {commit}, */ entry ) => {
-    console.log(entry);
+export const deleteEntry = async ( {commit}, entry ) => {
+    const { id:idEntryDelete } = entry
+    await daybookService.deleteEntry(idEntryDelete)
+    commit('removeEntry',idEntryDelete)
 }

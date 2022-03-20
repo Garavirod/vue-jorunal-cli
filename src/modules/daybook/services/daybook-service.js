@@ -18,6 +18,10 @@ class DayBookService extends Service{
     createEntryText( newEntry ){
         return journalApi.post('/entries.json', newEntry)
     }
+
+    deleteEntry( id ){
+        return journalApi.delete(`/entries/${id}.json`)
+    }
 }
 
 
